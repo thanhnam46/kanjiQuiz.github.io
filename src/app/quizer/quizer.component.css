@@ -1,0 +1,29 @@
+.question-kanji {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12vw;        
+    vertical-align: middle;
+    float: none;
+}
+.CorrectAnswer{
+    background-color: green;
+    color: aliceblue;
+}
+.IncorrectAnswer{
+    background-color: red;
+    color: aliceblue;
+}
+
+/* bo dau cham khoi the ul */
+ul { 
+    list-style-type: none;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    visibility: visible;
+}
+.wrong{
+    background: #bb6c6c;
+}

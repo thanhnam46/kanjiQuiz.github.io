@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <h3>{{ level }}</h3>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-sm-3 border border-primary text-success">
+        <h3>Đáp đúng: {{ correctClicks }}</h3>
+      </div>
+      <div class="col-sm-3 border border-primary text-danger">
+        <h3>Đáp sai: {{ incorrectClicks }}</h3>
+      </div>
+      <div class="col-sm-3 border border-primary text-primary">
+        <h3>Còn lại: {{ JLPT.length }}</h3>
+      </div>
+      <div class="col-sm-3 border border-primary text-primary">
+        <h3>Điểm số: {{ point }}%</h3>
+      </div>
+    </div>
+
+    <div class=" row alert alert-warning">
+      <strong>Thông báo: {{ thongBao }}</strong>
+    </div>
+
+    <div class="row">
+      <div
+        class="col-sm-4 text-center border border-primary"
+        (click)="nextQuestion()"
+      >
+        <p class="question-kanji">{{ card }}</p>
+        <div [class.hide]="isNextLevel">
+          <h5 [class.hide]="isClicked">{{ "Bộ: " + question.set }}</h5>
+          <h5 [class.hide]="isClicked" style="color:blue">
+            {{ "Ý nghĩa: " + question.meaning }}
+          </h5>
+          <h5 [class.hide]="isClicked">{{ "On: " + question.onyomi }}</h5>
+          <h5 [class.hide]="isClicked">{{ "Kun: " + question.kunyomi }}</h5>
+          <h5 [class.hide]="isClicked">{{ "Ví dụ: " + question.example }}</h5>
+        </div>
+      </div>
+
+      <!-- end of card -->
+
+      <div class="col-sm-8 ">
+        <div class="row" *ngFor="let word of answer; let i = index">
+          <ul
+            class="w-100 border border-primary ml-1 p-1"
+            (click)="checkAnswer(i, word.kanji)"
+            [class.CorrectAnswer]="
+              i == selectedRow && isCorrect && nextCard == false
+            "
+            [class.IncorrectAnswer]="
+              i == selectedRow && !isCorrect && nextCard == false
+            "
+          >
+            <li>
+              <span> {{ word.meaning }} </span>
+              <span [class.hide]="isClicked"
+                >-- Kanji: {{ word.kanji }} --
+              </span>
+              <span [class.hide]="isClicked">Ví dụ: {{ word.example }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end for row -->
+  </div>
+</div>
+
+<!-- end of container-fluid -->
